@@ -4,28 +4,27 @@
  */
 
 import { useState, FormEvent, ReactNode } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Wind, 
-  Building2, 
-  Palette, 
-  Ruler, 
-  FileEdit, 
-  Hammer, 
-  Leaf, 
-  Quote, 
-  X,
+import { motion } from 'motion/react';
+import {
+  Wind,
+  Building2,
+  Palette,
+  Ruler,
+  FileEdit,
+  Hammer,
+  Leaf,
+  Quote,
   ChevronRight
 } from 'lucide-react';
 
 const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/ecobalancecity@gmail.com';
 
 export default function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const scrollToContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -45,12 +44,6 @@ export default function App() {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleModalSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    closeModal();
-    alert('Consultation request confirmed!');
   };
 
   return (
@@ -103,8 +96,8 @@ export default function App() {
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={openModal}
-            className="btn-primary px-10 py-5 rounded-lg font-bold text-lg shadow-xl uppercase tracking-wider cursor-pointer"
+            onClick={scrollToContact}
+            className="btn-primary px-10 py-5 font-bold text-lg shadow-xl uppercase tracking-wider cursor-pointer"
           >
             BOOK YOUR SITE ASSESSMENT
           </motion.button>
@@ -146,8 +139,8 @@ export default function App() {
           </div>
           <div className="flex justify-center">
             <button 
-              onClick={openModal}
-              className="bg-primary-container text-on-primary-container px-8 py-4 rounded-lg font-bold hover:scale-105 active:scale-95 transition-all shadow-lg uppercase tracking-wider flex items-center gap-2 cursor-pointer"
+              onClick={scrollToContact}
+              className="bg-primary-container text-on-primary-container px-8 py-4 font-bold hover:scale-105 active:scale-95 transition-all shadow-lg uppercase tracking-wider flex items-center gap-2 cursor-pointer"
             >
               CONSULT A VERTICAL GARDEN EXPERT
               <ChevronRight size={20} />
@@ -172,10 +165,20 @@ export default function App() {
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 items-center justify-items-center max-w-6xl mx-auto mt-12">
+            {/*
             <TrustLogo src="https://borneohalfmarathon.com/wp-content/uploads/2026/04/Screenshot-2026-04-14-232340.png" alt="KLIA" />
             <TrustLogo src="https://borneohalfmarathon.com/wp-content/uploads/2026/04/LogoJLNFull_Size.png" alt="JLN" />
             <TrustLogo src="https://borneohalfmarathon.com/wp-content/uploads/2026/04/klia.jpg" alt="Allianz" />
             <TrustLogo src="https://borneohalfmarathon.com/wp-content/uploads/2026/04/Decathlon.png" alt="Decathlon" />
+            */}
+            <TrustLogo src="/logos/shopee.svg" alt="Shopee" />
+            <TrustLogo src="/logos/finas.png" alt="FINAS" />
+            <TrustLogo src="/logos/worq.png" alt="WORQ" />
+            <TrustLogo src="/logos/velesto.svg" alt="Velesto" />
+            <TrustLogo src="/logos/allianz.webp" alt="Allianz" />
+            <TrustLogo src="/logos/pharmaserv.webp" alt="Pharmaserv" />
+            <TrustLogo src="/logos/toyota.webp" alt="Toyota" />
+            <TrustLogo src="/logos/amway.webp" alt="Amway" />
           </div>
         </div>
       </section>
@@ -216,8 +219,8 @@ export default function App() {
             />
           </div>
           <button 
-            onClick={openModal}
-            className="bg-primary-container text-on-primary-container px-10 py-5 rounded-lg font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-xl uppercase tracking-wider cursor-pointer"
+            onClick={scrollToContact}
+            className="bg-primary-container text-on-primary-container px-10 py-5 font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-xl uppercase tracking-wider cursor-pointer"
           >
             CONSULT A VERTICAL GARDEN EXPERT
           </button>
@@ -248,8 +251,8 @@ export default function App() {
                 Scale-focused vertical landscaping for high-traffic environments and official state properties. Transform institutional spaces into breathing landmarks of environmental stewardship.
               </p>
               <button 
-                onClick={openModal}
-                className="bg-[#67ff04] text-[#1b1c1c] px-10 py-5 rounded-lg font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-xl uppercase tracking-wider cursor-pointer"
+                onClick={scrollToContact}
+                className="bg-[#67ff04] text-[#1b1c1c] px-10 py-5 font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-xl uppercase tracking-wider cursor-pointer"
               >
                 BOOK YOUR SITE ASSESSMENT
               </button>
@@ -279,8 +282,8 @@ export default function App() {
                 Boutique designs focusing on aesthetics, guest satisfaction, and premium architectural integration. Elevate hospitality through sophisticated biophilic design.
               </p>
               <button 
-                onClick={openModal}
-                className="bg-[#67ff04] text-[#1b1c1c] px-10 py-5 rounded-lg font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-xl uppercase tracking-wider cursor-pointer"
+                onClick={scrollToContact}
+                className="bg-[#67ff04] text-[#1b1c1c] px-10 py-5 font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-xl uppercase tracking-wider cursor-pointer"
               >
                 BOOK YOUR SITE ASSESSMENT
               </button>
@@ -295,8 +298,8 @@ export default function App() {
               Ready to create your natural centerpiece?
             </h2>
             <button 
-              onClick={openModal}
-              className="bg-[#67ff04] text-[#1b1c1c] px-10 py-5 rounded-lg font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-xl uppercase tracking-wider whitespace-nowrap cursor-pointer"
+              onClick={scrollToContact}
+              className="bg-[#67ff04] text-[#1b1c1c] px-10 py-5 font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-xl uppercase tracking-wider whitespace-nowrap cursor-pointer"
             >
               GET STARTED NOW
             </button>
@@ -345,8 +348,8 @@ export default function App() {
           </div>
           <div className="flex justify-center">
             <button 
-              onClick={openModal}
-              className="btn-primary px-10 py-5 rounded-lg font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-xl uppercase tracking-wider cursor-pointer"
+              onClick={scrollToContact}
+              className="btn-primary px-10 py-5 font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-xl uppercase tracking-wider cursor-pointer"
             >
               START YOUR PROJECT JOURNEY
             </button>
@@ -380,8 +383,8 @@ export default function App() {
           </div>
           <div className="flex justify-center">
             <button 
-              onClick={openModal}
-              className="bg-primary-container text-on-primary-container px-10 py-5 rounded-lg font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-xl uppercase tracking-wider cursor-pointer"
+              onClick={scrollToContact}
+              className="bg-primary-container text-on-primary-container px-10 py-5 font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-xl uppercase tracking-wider cursor-pointer"
             >
               BOOK YOUR SITE ASSESSMENT
             </button>
@@ -390,7 +393,7 @@ export default function App() {
       </section>
 
       {/* Refined Footer Form Section */}
-      <footer className="bg-[#313131] border-t-2 border-[#67FF04] py-24">
+      <footer id="contact" className="bg-[#313131] border-t-2 border-[#67FF04] py-24">
         <div className="container mx-auto px-6">
           {/* Header */}
           <div className="mb-16 flex flex-col items-center text-center">
@@ -463,7 +466,7 @@ export default function App() {
               </div>
               <div className="pt-6 border-t border-white/10 flex flex-col items-center gap-4">
                 <button
-                  className="w-full bg-[#67FF04] text-[#313131] font-headline font-[900] uppercase text-lg py-4 px-8 rounded-[4px] transition-all btn-submit-hover cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="w-full bg-[#67FF04] text-[#313131] font-headline font-[900] uppercase text-lg py-4 px-8 transition-all btn-submit-hover cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                   type="submit"
                   disabled={isSubmitting}
                 >
@@ -494,50 +497,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Popup Modal */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm px-6"
-          >
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-inverse-surface border-2 border-primary-container w-full max-w-xl rounded-xl relative p-10 overflow-hidden"
-            >
-              <button 
-                className="absolute top-6 right-6 text-white/60 hover:text-white cursor-pointer" 
-                onClick={closeModal}
-              >
-                <X size={24} />
-              </button>
-              <h3 className="font-headline text-3xl text-white mb-4">Request a Consultation</h3>
-              <p className="text-white/60 mb-10">Our specialists will contact you within 24 hours to discuss your project requirements.</p>
-              <form className="space-y-6" onSubmit={handleModalSubmit}>
-                <div>
-                  <label className="block text-white/60 text-sm mb-2">Full Name</label>
-                  <input className="w-full bg-white/5 border border-dashed border-white/20 rounded-lg focus:border-primary-container focus:ring-primary-container text-white p-4" placeholder="John Doe" required type="text" />
-                </div>
-                <div>
-                  <label className="block text-white/60 text-sm mb-2">Phone Number</label>
-                  <input className="w-full bg-white/5 border border-dashed border-white/20 rounded-lg focus:border-primary-container focus:ring-primary-container text-white p-4" placeholder="+60 12..." required type="tel" />
-                </div>
-                <div>
-                  <label className="block text-white/60 text-sm mb-2">Project Location</label>
-                  <input className="w-full bg-white/5 border border-dashed border-white/20 rounded-lg focus:border-primary-container focus:ring-primary-container text-white p-4" placeholder="Kuala Lumpur, PJ, etc." required type="text" />
-                </div>
-                <button className="w-full btn-primary py-5 rounded-lg font-bold text-lg hover:brightness-110 active:scale-95 transition-all mt-4 uppercase tracking-wider cursor-pointer" type="submit">
-                  CONFIRM BOOKING
-                </button>
-              </form>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
@@ -557,10 +516,10 @@ function ValueCard({ icon, title, description }: { icon: ReactNode, title: strin
 function TrustLogo({ src, alt }: { src: string, alt: string }) {
   return (
     <div className="flex justify-center items-center h-20 w-full px-4">
-      <img 
-        alt={alt} 
-        className="max-h-12 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300" 
-        src={src} 
+      <img
+        alt={alt}
+        className="h-14 w-auto max-w-[160px] object-contain grayscale opacity-70 mix-blend-multiply hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+        src={src}
         referrerPolicy="no-referrer"
       />
     </div>
