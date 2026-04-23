@@ -18,15 +18,33 @@ import {
   ChevronRight
 } from 'lucide-react';
 
+const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/haribahari71@gmail.com';
+
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const handleFormSubmit = (e: FormEvent) => {
+  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert('Request sent! We will contact you soon.');
+    const form = e.currentTarget;
+    setIsSubmitting(true);
+    try {
+      const response = await fetch(FORMSUBMIT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      });
+      if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+      alert('Request sent! We will contact you soon.');
+      form.reset();
+    } catch {
+      alert('Sorry, we could not send your request. Please try again or email us directly at haribahari71@gmail.com.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleModalSubmit = (e: FormEvent) => {
@@ -390,19 +408,22 @@ export default function App() {
           {/* Form Card */}
           <div className="max-w-[760px] mx-auto bg-white/5 border border-white/15 rounded-[12px] p-8 md:p-12">
             <form className="space-y-8" onSubmit={handleFormSubmit}>
+              <input type="hidden" name="_subject" value="New Quotation Request — EcoBalance Website" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_captcha" value="false" />
               <div className="grid md:grid-cols-2 gap-6">
-                <FormInput label="Full Name" placeholder="Enter your full name" required />
-                <FormInput label="Email Address" placeholder="name@company.com" type="email" required />
+                <FormInput label="Full Name" name="name" placeholder="Enter your full name" required />
+                <FormInput label="Email Address" name="email" placeholder="name@company.com" type="email" required />
               </div>
-              <FormInput label="Phone Number" placeholder="+60 1x-xxxxxxx" type="tel" required />
+              <FormInput label="Phone Number" name="phone" placeholder="+60 1x-xxxxxxx" type="tel" required />
               <div className="grid md:grid-cols-2 gap-6">
-                <FormInput label="Project Location / Area (Optional)" placeholder="e.g. Bangsar, KL" />
+                <FormInput label="Project Location / Area (Optional)" name="location" placeholder="e.g. Bangsar, KL" />
                 <div className="flex flex-col gap-2">
                   <label className="text-[0.72rem] font-[600] tracking-[0.08em] text-white/70 uppercase font-body">
                     Project Type <span className="text-white/40 font-normal lowercase">(Optional)</span>
                   </label>
-                  <select className="w-full bg-white/[0.08] border border-white/[0.18] rounded-[4px] py-4 px-4 text-white placeholder-white/[0.28] form-input-focus transition-all appearance-none cursor-pointer">
-                    <option className="bg-[#313131]" disabled selected value="">Select Type</option>
+                  <select name="project_type" defaultValue="" className="w-full bg-white/[0.08] border border-white/[0.18] rounded-[4px] py-4 px-4 text-white placeholder-white/[0.28] form-input-focus transition-all appearance-none cursor-pointer">
+                    <option className="bg-[#313131]" disabled value="">Select Type</option>
                     <option className="bg-[#313131]" value="Corporate Office">Corporate Office</option>
                     <option className="bg-[#313131]" value="Retail Commercial">Retail Commercial</option>
                     <option className="bg-[#313131]" value="Healthcare">Healthcare</option>
@@ -414,13 +435,13 @@ export default function App() {
                 </div>
               </div>
               <div className="grid md:grid-cols-2 gap-6">
-                <FormInput label="Approximate Wall Size (Optional)" placeholder="e.g. 15 sq meters" />
+                <FormInput label="Approximate Wall Size (Optional)" name="wall_size" placeholder="e.g. 15 sq meters" />
                 <div className="flex flex-col gap-2">
                   <label className="text-[0.72rem] font-[600] tracking-[0.08em] text-white/70 uppercase font-body">
                     Budget Range <span className="text-white/40 font-normal lowercase">(Optional)</span>
                   </label>
-                  <select className="w-full bg-white/[0.08] border border-white/[0.18] rounded-[4px] py-4 px-4 text-white placeholder-white/[0.28] form-input-focus transition-all appearance-none cursor-pointer">
-                    <option className="bg-[#313131]" disabled selected value="">Select Budget Range</option>
+                  <select name="budget" defaultValue="" className="w-full bg-white/[0.08] border border-white/[0.18] rounded-[4px] py-4 px-4 text-white placeholder-white/[0.28] form-input-focus transition-all appearance-none cursor-pointer">
+                    <option className="bg-[#313131]" disabled value="">Select Budget Range</option>
                     <option className="bg-[#313131]" value="RM 10,000 - RM 30,000">RM 10,000 - RM 30,000</option>
                     <option className="bg-[#313131]" value="RM 30,000 - RM 60,000">RM 30,000 - RM 60,000</option>
                     <option className="bg-[#313131]" value="RM 60,000 - RM 100,000">RM 60,000 - RM 100,000</option>
@@ -432,19 +453,21 @@ export default function App() {
                 <label className="text-[0.72rem] font-[600] tracking-[0.08em] text-white/70 uppercase font-body">
                   Additional Notes <span className="text-[#67FF04] ml-0.5">*</span>
                 </label>
-                <textarea 
-                  className="w-full bg-white/[0.08] border border-white/[0.18] rounded-[4px] py-4 px-4 text-white placeholder-white/[0.28] form-input-focus transition-all" 
-                  placeholder="Tell us about your project requirements..." 
-                  required 
+                <textarea
+                  className="w-full bg-white/[0.08] border border-white/[0.18] rounded-[4px] py-4 px-4 text-white placeholder-white/[0.28] form-input-focus transition-all"
+                  name="notes"
+                  placeholder="Tell us about your project requirements..."
+                  required
                   rows={4}
                 ></textarea>
               </div>
               <div className="pt-6 border-t border-white/10 flex flex-col items-center gap-4">
-                <button 
-                  className="w-full bg-[#67FF04] text-[#313131] font-headline font-[900] uppercase text-lg py-4 px-8 rounded-[4px] transition-all btn-submit-hover cursor-pointer" 
+                <button
+                  className="w-full bg-[#67FF04] text-[#313131] font-headline font-[900] uppercase text-lg py-4 px-8 rounded-[4px] transition-all btn-submit-hover cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                   type="submit"
+                  disabled={isSubmitting}
                 >
-                  REQUEST QUOTE VIA EMAIL
+                  {isSubmitting ? 'SENDING…' : 'REQUEST QUOTE VIA EMAIL'}
                 </button>
                 <p className="text-white/35 text-[0.78rem] font-body text-center">
                   Operating Hours: Mon–Fri, 9am–6pm · Includes free site assessment for qualified projects*
@@ -574,17 +597,18 @@ function ProcessStep({ num, icon, title, description }: { num: string, icon: Rea
   );
 }
 
-function FormInput({ label, placeholder, type = "text", required = false }: { label: string, placeholder: string, type?: string, required?: boolean }) {
+function FormInput({ label, name, placeholder, type = "text", required = false }: { label: string, name: string, placeholder: string, type?: string, required?: boolean }) {
   return (
     <div className="flex flex-col gap-2">
       <label className="text-[0.72rem] font-[600] tracking-[0.08em] text-white/70 uppercase font-body">
         {label} {required && <span className="text-[#67FF04] ml-0.5">*</span>}
       </label>
-      <input 
-        className="w-full bg-white/[0.08] border border-white/[0.18] rounded-[4px] py-4 px-4 text-white placeholder-white/[0.28] form-input-focus transition-all" 
-        placeholder={placeholder} 
-        required={required} 
-        type={type} 
+      <input
+        className="w-full bg-white/[0.08] border border-white/[0.18] rounded-[4px] py-4 px-4 text-white placeholder-white/[0.28] form-input-focus transition-all"
+        name={name}
+        placeholder={placeholder}
+        required={required}
+        type={type}
       />
     </div>
   );
