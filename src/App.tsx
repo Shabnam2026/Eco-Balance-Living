@@ -18,7 +18,7 @@ import {
   ChevronRight
 } from 'lucide-react';
 
-const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/haribahari71@gmail.com';
+const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/ecobalancecity@gmail.com';
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,7 +41,7 @@ export default function App() {
       alert('Request sent! We will contact you soon.');
       form.reset();
     } catch {
-      alert('Sorry, we could not send your request. Please try again or email us directly at haribahari71@gmail.com.');
+      alert('Sorry, we could not send your request. Please try again or email us directly at ecobalancecity@gmail.com.');
     } finally {
       setIsSubmitting(false);
     }
