@@ -37,11 +37,9 @@ export default function App() {
         body: JSON.stringify(Object.fromEntries(new FormData(form))),
       });
       if (!response.ok) throw new Error(`Request failed: ${response.status}`);
-      alert('Request sent! We will contact you soon.');
-      form.reset();
+      window.location.href = '/thank-you.html';
     } catch {
       alert('Sorry, we could not send your request. Please try again or email us directly at ecobalancecity@gmail.com.');
-    } finally {
       setIsSubmitting(false);
     }
   };
