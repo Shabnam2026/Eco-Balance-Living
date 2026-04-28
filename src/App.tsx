@@ -162,21 +162,15 @@ export default function App() {
               Trusted by leading developers and institutions to deliver high-impact green infrastructure projects nationwide.
             </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 items-center justify-items-center max-w-6xl mx-auto mt-12">
-            {/*
-            <TrustLogo src="https://borneohalfmarathon.com/wp-content/uploads/2026/04/Screenshot-2026-04-14-232340.png" alt="KLIA" />
-            <TrustLogo src="https://borneohalfmarathon.com/wp-content/uploads/2026/04/LogoJLNFull_Size.png" alt="JLN" />
-            <TrustLogo src="https://borneohalfmarathon.com/wp-content/uploads/2026/04/klia.jpg" alt="Allianz" />
-            <TrustLogo src="https://borneohalfmarathon.com/wp-content/uploads/2026/04/Decathlon.png" alt="Decathlon" />
-            */}
-            <TrustLogo src="/logos/shopee.svg" alt="Shopee" />
-            <TrustLogo src="/logos/finas.png" alt="FINAS" />
-            <TrustLogo src="/logos/worq.png" alt="WORQ" />
-            <TrustLogo src="/logos/velesto.svg" alt="Velesto" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 items-center justify-items-center max-w-5xl mx-auto mt-12">
             <TrustLogo src="/logos/allianz.webp" alt="Allianz" />
-            <TrustLogo src="/logos/pharmaserv.webp" alt="Pharmaserv" />
-            <TrustLogo src="/logos/toyota.webp" alt="Toyota" />
-            <TrustLogo src="/logos/amway.webp" alt="Amway" />
+            <TrustLogo src="/logos/BPMB.png" alt="BPMB" />
+            <TrustLogo src="/logos/ISKL.png" alt="ISKL" />
+            <TrustLogo src="/logos/Taylors.png" alt="Taylor's College" />
+            <TrustLogo src="/logos/THE ONE ACADEMY.png" alt="The One Academy" imgClassName="h-20 max-w-[200px]" />
+            <TrustLogo src="/logos/LogoJLN%5BFull_Size%5D.png" alt="JLN" imgClassName="h-28 max-w-[240px]" />
+            <TrustLogo src="/logos/logo-mahb_2021_0.webp" alt="MAHB" imgClassName="h-20 max-w-[200px]" />
+            <TrustLogo src="/logos/1712896962304.png" alt="Client" imgClassName="h-20 max-w-[200px]" />
           </div>
         </div>
       </section>
@@ -195,25 +189,25 @@ export default function App() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-8 mb-16">
-            <ProjectCard 
-              img="https://borneohalfmarathon.com/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-17-at-08.42.09-Copy.jpeg"
+            <ProjectCard
+              img="/KLIA TERMINAL.jpg"
               title="KLIA Terminal"
               category="Infrastructure & Public Space"
             />
-            <ProjectCard 
-              img="https://borneohalfmarathon.com/wp-content/uploads/2026/04/worq-integra-scaled.jpg"
+            <ProjectCard
+              img="/ALLIANZ.jpg"
               title="Allianz Office"
-              category="Corporate Workplace"
+              category="Corporate Workspace"
             />
-            <ProjectCard 
-              img="https://borneohalfmarathon.com/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-17-at-08.42.10-2.jpeg"
-              title="Luxury Hotel Lobby"
-              category="Hospitality Design"
+            <ProjectCard
+              img="/THE EXCHANGE - TRX.jpg"
+              title="The Exchange - TRX"
+              category="Corporate & Public Space"
             />
-            <ProjectCard 
-              img="https://borneohalfmarathon.com/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-17-at-08.42.09-3.jpeg"
-              title="Living Wall Rescue"
-              category="Maintenance & Restoration"
+            <ProjectCard
+              img="/JABATAN LANDSKAP NEGARA.jpg"
+              title="Jabatan Landskap Negara"
+              category="Government Agency Space"
             />
           </div>
           <button 
@@ -230,11 +224,10 @@ export default function App() {
         {/* Row 1: Corporate */}
         <div className="flex flex-col md:flex-row min-h-[500px]">
           <div className="w-full md:w-1/2 relative h-[400px] md:h-auto">
-            <img 
-              alt="Corporate Headquarters Living Wall" 
-              className="absolute inset-0 w-full h-full object-cover" 
-              src="https://borneohalfmarathon.com/wp-content/uploads/2026/04/Wisma-IAV-1-Copy-scaled.jpg" 
-              referrerPolicy="no-referrer"
+            <img
+              alt="Corporate Headquarters Living Wall"
+              className="absolute inset-0 w-full h-full object-cover"
+              src="/Showcase Your Commitment to Sustainability Decathlon.jpg"
             />
           </div>
           <div className="w-full md:w-1/2 bg-[#f5f5f5] flex items-center justify-center p-8 md:p-16 lg:p-24 text-center md:text-left">
@@ -403,7 +396,7 @@ export default function App() {
               Request Your Custom Quotation & Consultation
             </h2>
             <p className="text-white/60 font-body text-lg max-w-3xl mx-auto leading-relaxed">
-              For commercial and institutional spaces · Projects from RM20,000 · Receive your tailored proposal via email within 24 hours.
+              For commercial and institutional spaces · Projects from RM10,000 · Receive your tailored proposal via email within 24 hours.
             </p>
           </div>
           {/* Form Card */}
@@ -511,12 +504,12 @@ function ValueCard({ icon, title, description }: { icon: ReactNode, title: strin
   );
 }
 
-function TrustLogo({ src, alt }: { src: string, alt: string }) {
+function TrustLogo({ src, alt, imgClassName }: { src: string, alt: string, imgClassName?: string }) {
   return (
     <div className="flex justify-center items-center h-20 w-full px-4">
       <img
         alt={alt}
-        className="h-14 w-auto max-w-[160px] object-contain grayscale opacity-70 mix-blend-multiply hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+        className={`w-auto object-contain grayscale opacity-70 mix-blend-multiply hover:grayscale-0 hover:opacity-100 transition-all duration-300 ${imgClassName ?? 'h-14 max-w-[160px]'}`}
         src={src}
         referrerPolicy="no-referrer"
       />
