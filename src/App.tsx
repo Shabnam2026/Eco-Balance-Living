@@ -165,8 +165,8 @@ export default function App() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 items-center justify-items-center max-w-5xl mx-auto mt-12">
             <TrustLogo src="/logos/allianz.webp" alt="Allianz" />
             <TrustLogo src="/logos/BPMB.png" alt="BPMB" />
-            <TrustLogo src="/logos/ISKL.png" alt="ISKL" />
-            <TrustLogo src="/logos/Taylors.png" alt="Taylor's College" />
+            <TrustLogo src="/logos/ISKL.png" alt="ISKL" imgClassName="h-28 max-w-[240px]" />
+            <TrustLogo src="/logos/Taylors.png" alt="Taylor's College" imgClassName="h-20 max-w-[200px]" />
             <TrustLogo src="/logos/THE ONE ACADEMY.png" alt="The One Academy" imgClassName="h-20 max-w-[200px]" />
             <TrustLogo src="/logos/LogoJLN%5BFull_Size%5D.png" alt="JLN" imgClassName="h-28 max-w-[240px]" />
             <TrustLogo src="/logos/logo-mahb_2021_0.webp" alt="MAHB" imgClassName="h-20 max-w-[200px]" />
